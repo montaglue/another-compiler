@@ -18,6 +18,5 @@ src/internal_representations folder.
 
 
 ## Resources
-- https://mapping-high-level-constructs-to-llvm-ir.readthedocs.io/en/latest/a-quick-primer/index.html
-- https://mukulrathi.com/create-your-own-programming-language/intro-to-compiler/
-- https://buildmedia.readthedocs.org/media/pdf/mapping-high-level-constructs-to-llvm-ir/latest/mapping-high-level-constructs-to-llvm-ir.pdf
+- [Handbook of mapping hight level constructions to llvm](https://mapping-high-level-constructs-to-llvm-ir.readthedocs.io/en/latest/a-quick-primer/index.html)
+- [Interesting example of compiler that covers concurrency and templated type system](https://mukulrathi.com/create-your-own-programming-language/intro-to-compiler/)
