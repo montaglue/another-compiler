@@ -1,0 +1,35 @@
+program = { SOI ~ "\n"* ~ (func ~ "\n"+) * ~ func? ~ EOI }
+
+func = { "fun" ~  ident ~  "(" ~  (ident ~  ",")* ~ ident? ~ ")" ~  block }
+
+block = { "{" ~ "\n"* ~  (stmt ~ "\n"+) * ~ stmt? ~  "}" }
+
+stmt = { expr ~ ";" | let_expr ~ ";" | assign_expr ~ ";" | if_expr  | for_expr | return_expr ~ ";"}
+
+let_expr = { "let" ~  ident ~  "=" ~  expr }
+
+if_expr = { "if" ~  expr  ~  block ~  ("else" ~  block)? }
+
+for_expr = { "for"  ~  (let_expr | assign_expr | expr) ~  ";" ~  expr ~  ";" ~ (assign_expr | expr) ~  block }
+
+return_expr = { "return" ~  expr? }
+
+assign_expr = { ident ~  "=" ~  expr }
+
+expr = { expr1 ~ "+" ~  expr | expr1 ~ "-" ~  expr | expr1 }
+
+expr1 = { expr2 ~ "*" ~  expr1 | expr2 ~ "/" ~  expr1 | expr2 }
+
+expr2 = {call_expr | expr3}
+
+expr3 = { "(" ~  expr ~  ")" | ident | number | string }
+
+call_expr = { ident ~ "(" ~  (expr ~  "," )* ~ expr? ~ ")" }
+
+number = @{ (ASCII_DIGIT)+ }
+
+string = @{ "'" ~ ( "''" | (!"'" ~ ANY) )* ~ "'" }
+
+ident = @{ ASCII_ALPHA ~ (ASCII_ALPHANUMERIC | "_")* }
+
+WHITESPACE = _{ " " }
